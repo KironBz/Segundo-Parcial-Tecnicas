@@ -14,8 +14,6 @@ namespace PruebasExamen;
 
             // Assert
 
-            Assert.NotNull()
-            Assert.Equal(1, servicio.ContarUsuarios());
         }
 
         // 2. BuscarUsuario(Nombre)

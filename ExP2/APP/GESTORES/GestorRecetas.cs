@@ -6,7 +6,7 @@ namespace APP.GESTORES
     public class GestorRecetas : IGestorRecetas
     {
         // Propiedades
-        public List<Receta> RecetasDisponibles { get; set; }
+        public new List<Receta> RecetasDisponibles { get; set; }
 
         // Constructor
         public GestorRecetas()
