@@ -1,4 +1,7 @@
 ﻿
+using APP.MODELOS;
+using APP.INTERFACES;
+
 namespace APP.SERVICIOS
 {
     public class ServicioRecetas

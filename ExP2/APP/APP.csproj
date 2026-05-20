@@ -8,18 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="INTERFACES\IExportador.cs" />
-    <Compile Remove="INTERFACES\IReceta.cs" />
-    <Compile Remove="MODELOS\Receta.cs" />
-    <Compile Remove="MODELOS\Usuario.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="GESTORES\GestorRecetas.cs" />
-    <None Include="INTERFACES\IExportador.cs" />
-    <None Include="INTERFACES\IReceta.cs" />
-    <None Include="MODELOS\Receta.cs" />
-    <None Include="MODELOS\Usuario.cs" />
   </ItemGroup>
 
 </Project>

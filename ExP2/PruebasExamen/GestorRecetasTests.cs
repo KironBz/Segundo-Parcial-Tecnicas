@@ -1,5 +1,6 @@
 using Xunit;
 using APP.GESTORES;
+using APP.MODELOS;
 
 namespace PruebasExamen;
 
@@ -19,7 +20,7 @@ namespace PruebasExamen;
             g.AgregarReceta(receta);
 
             // Assert
-            Assert.Equal(1, g.listaRecetas.Count);
+            Assert.Equal(1, g.RecetasDisponibles.Count);
         }
 
         [Fact]
@@ -31,7 +32,7 @@ namespace PruebasExamen;
         g.AgregarReceta(receta);
 
         // Act
-        g.EliminarReceta(receta); 
+        g.EliminarReceta("Paella"); 
 
         // Assert
         Assert.Equal(0, g.RecetasDisponibles.Count);

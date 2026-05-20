@@ -1,8 +1,6 @@
 using Xunit;
 
 using APP.MODELOS;
-using APP.GESTORES;
-using APP.INTERFACES; 
 
 namespace PruebasExamen;
 
@@ -13,7 +11,7 @@ public class UsuarioTests
     public void CrearLibroRecetas_CreacionDeLista()
     {
         // Arrange
-        var u = new Usuario();
+        var u = new Usuario("Luis");
 
         // Act
         u.CrearLibroRecetas("Favoritas");
@@ -27,7 +25,7 @@ public class UsuarioTests
     public void CrearLibroRecetas_Duplicado_Exception()
     {
         // Arrange
-        var u = new Usuario();
+        var u = new Usuario("Luis");
 
         // Act
         u.CrearLibroRecetas("Favoritas");
@@ -42,7 +40,7 @@ public class UsuarioTests
     public void AgregarRecetaALibro_DebeAñadirReceta()
     {
         // Arrange
-        var u = new Usuario();
+        var u = new Usuario("Luis");
 
         // Act
         u.CrearLibroRecetas("Favoritas");
@@ -61,7 +59,7 @@ public class UsuarioTests
     public void AgregarRecetaALibro_ListaInexistente_Exception()
     {
         // Arrange
-        var u = new Usuario();
+        var u = new Usuario("Luis");
         var receta = new Receta("Paella", "Chef Ramirez", 45);
 
         // Assert
@@ -73,7 +71,7 @@ public class UsuarioTests
     public void ContarRecetas_DebeSumarCorrectamente()
     {
         // Arrange
-        var u = new Usuario();
+        var u = new Usuario("Luis");
 
         // Act
         u.CrearLibroRecetas("Libro1");
@@ -83,7 +81,7 @@ public class UsuarioTests
         u.AgregarRecetaALibro("Libro2", new Receta("R2", "C2", 20));
 
         // Assert
-        Assert.Equal(2, u.ContarRecetas());
+        Assert.Equal(2, u.ContarRecetas("Luis"));
 
 
     }

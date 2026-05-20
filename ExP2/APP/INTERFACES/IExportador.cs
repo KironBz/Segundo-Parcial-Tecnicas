@@ -1,4 +1,5 @@
-﻿
+﻿using APP.MODELOS;
+
 namespace APP.INTERFACES
 {
     public interface IExportador

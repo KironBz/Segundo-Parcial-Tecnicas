@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using APP.INTERFACES;
+using APP.MODELOS;
+
 namespace APP.SERVICIOS
 {
     public class ExportadorTxT : IExportador 
