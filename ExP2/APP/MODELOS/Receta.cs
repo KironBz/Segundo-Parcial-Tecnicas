@@ -1,13 +1,18 @@
-﻿namespace APP.MODELOS
-{
-    using APP.INTERFACES;
+﻿using APP.INTERFACES;
+using System; // Para lanzar excepciones sin .system
 
+namespace APP.MODELOS
+{
     public class Receta : IReceta
     {
-        // Propiedades
-        public string Nombre { get; set; }
-        public string Chef { get; set; }
-        public int TiempoMinutos { get; set; }
+        // Atributos y Propiedades
+        private readonly string _nombre;
+        private readonly string _chef;
+        private readonly int _tiempoMinutos;
+
+        public string Nombre { get { return _nombre; } }
+        public string Chef { get { return _chef; } }
+        public int TiempoMinutos { get { return _tiempoMinutos; } }
 
         // Constructor
         public Receta(string nombre, string chef, int tiempoMinutos)
