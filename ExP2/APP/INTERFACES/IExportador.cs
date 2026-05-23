@@ -4,6 +4,6 @@ namespace APP.INTERFACES
 {
     public interface IExportador
     {
-        bool ExportarATxt(Usuario usuario, string nombreLibro);
+        void ExportarATxt(Usuario usuario, string rutaArchivo);
     }
 }
