@@ -1,5 +1,4 @@
-﻿
-using APP.INTERFACES;
+﻿using APP.INTERFACES;
 using APP.MODELOS;
 using APP.GESTORES;
 
@@ -15,9 +14,9 @@ namespace APP.SERVICIOS
     */
     public class ServicioRecetas
     {
-        // Atributos y Propiedades
-        public IGestorRecetas Gestor { get; private set; }  // Propiedad publica
-        public IExportador Exportador { get; private set; } // cualquiera lee, solo la clase puede modificarla
+        // Propiedades
+        public IGestorRecetas Gestor { get; private set; }
+        public IExportador Exportador { get; private set; }
         public List<Usuario> Usuarios { get; private set; }
 
         // Constructor
@@ -28,7 +27,7 @@ namespace APP.SERVICIOS
             Usuarios = new List<Usuario>();
         }
 
-        // Metodos
+        // Registrar usuario
         public Usuario RegistrarUsuario(string nombre)
         {
             if (string.IsNullOrWhiteSpace(nombre))
@@ -40,6 +39,7 @@ namespace APP.SERVICIOS
             return nuevo;
         }
 
+        // Buscar usuario (case-insensitive)
         public Usuario BuscarUsuario(string nombre)
         {
             foreach (var u in Usuarios)
@@ -52,6 +52,7 @@ namespace APP.SERVICIOS
             return null;
         }
 
+        // Eliminar usuario
         public bool EliminarUsuario(string nombre)
         {
             for (int i = 0; i < Usuarios.Count; i++)
@@ -65,11 +66,13 @@ namespace APP.SERVICIOS
             return false;
         }
 
+        // Contar usuarios (sin LINQ)
         public int ContarUsuarios()
         {
-            return Usuarios.Count();
+            return Usuarios.Count;   // ✅ propiedad, no método LINQ
         }
 
+        // Ordenar catálogo global según algoritmo elegido
         public void OrdenarCatalogo(string algoritmo)
         {
             if (algoritmo == null)
@@ -77,6 +80,7 @@ namespace APP.SERVICIOS
                 return;
             }
             string alg = algoritmo.ToLowerInvariant();
+
             if (alg == "quick")
             {
                 Gestor.QuickSort(Gestor.RecetasDisponibles);
@@ -84,7 +88,6 @@ namespace APP.SERVICIOS
             }
             else if (alg == "merge")
             {
-                // MergeSort regresa una nueva lista; se reemplaza la original
                 List<Receta> nuevaLista = Gestor.MergeSort(Gestor.RecetasDisponibles);
                 Gestor.RecetasDisponibles = nuevaLista;
                 Console.WriteLine("Catálogo ordenado con MergeSort por tiempo.");
@@ -95,46 +98,18 @@ namespace APP.SERVICIOS
             }
         }
 
-        public int OrdenarLibroYCalcularTiempo(Usuario usuario, string nombreLibro, string algoritmo)
+        public int OrdenarLibroYCalcularTiempo(Usuario usuario, string nombreLibro)
         {
             if (usuario == null)
             {
                 throw new ArgumentNullException("usuario");
             }
-
-            // da una lista de recetas del libro
             List<Receta> libro = usuario.ObtenerLibro(nombreLibro);
             if (libro == null)
             {
                 return 0;
             }
-
-            // se usa el algoritmo de ordenamiento
-            if (algoritmo == null)
-            {
-                return 0;
-            }
-            string alg = algoritmo.ToLowerInvariant();
-            if (alg == "quick")
-            {
-                Gestor.QuickSort(libro);
-            }
-            else if (alg == "merge")
-            {
-                List<Receta> ordenada = Gestor.MergeSort(libro);
-                // Reemplaza el libro original con la lista ordenada
-                libro.Clear();
-                foreach (var r in ordenada)
-                {
-                    libro.Add(r);
-                }
-            }
-            else
-            {
-                throw new ArgumentException("Algoritmo no reconocido. Use 'quick' o 'merge'.");
-            }
-           
-            // da la suma de tiempos
+            Gestor.QuickSort(libro);
             int suma = 0;
             foreach (var receta in libro)
             {

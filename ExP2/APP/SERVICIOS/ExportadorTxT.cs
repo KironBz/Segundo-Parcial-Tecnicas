@@ -1,48 +1,56 @@
 ﻿using APP.INTERFACES;
 using APP.MODELOS;
+using System.Text;
 
 namespace APP.SERVICIOS
 {
     public class ExportadorTxT : IExportador
     {
-        public bool ExportarATxt(Usuario usuario, string nombreLibro)
+        /*          CORRECCIONES
+        / - Se corrige el nombre de clase ExportadorTxt
+        / - La firma del método se modifica
+        / - Se cambia el retorno a void (no bool)
+        / - Se exportan TODOS los libros del usuario
+        / - Se incluye fecha en el encabezado
+        / - Se usa receta.ToString() para el formato
+        */
+        public void ExportarATxt(Usuario usuario, string rutaArchivo)
         {
-            if (usuario == null) throw new ArgumentNullException(nameof(usuario));
-            if (string.IsNullOrWhiteSpace(nombreLibro)) throw new ArgumentException("El libro no puede estar vacío.");
-
-            // Validamos que el usuario realmente sea dueño del libro de recetas
-            if (!usuario.LibrosRecetas.ContainsKey(nombreLibro))
+            // Validaciones opcionales
+            if (usuario == null)
             {
-                return false;
+                throw new ArgumentNullException("usuario");
             }
-
-            try
+            if (string.IsNullOrWhiteSpace(rutaArchivo))
             {
-                // Nombre del archivo que exige el caso de prueba
-                string rutaArchivo = $"{usuario.Nombre}_{nombreLibro}.txt";
-                var recetas = usuario.LibrosRecetas[nombreLibro];
-
-                // Escritura física del archivo .txt
-                using (StreamWriter writer = new StreamWriter(rutaArchivo))
+                throw new ArgumentException("La ruta del archivo no puede estar vacía.", "rutaArchivo");
+            }
+            using (StreamWriter writer = new StreamWriter(rutaArchivo, false, Encoding.UTF8))
+            {
+                // Encabezado con nombre y fecha
+                writer.WriteLine($"Usuario: {usuario.Nombre}");
+                writer.WriteLine($"Fecha de exportación: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+                writer.WriteLine();
+                if (usuario.LibrosRecetas.Count == 0)
                 {
-                    // Cumplimos con el test: "ContieneNombreUsuario"
-                    writer.WriteLine($"Usuario Propietario: {usuario.Nombre}");
-                    writer.WriteLine($"Libro de Recetas: {nombreLibro}");
-
-                    foreach (var receta in recetas)
+                    writer.WriteLine("El usuario no tiene libros registrados.");
+                }
+                else
+                {
+                    // Recorre todos los libros
+                    foreach (var libro in usuario.LibrosRecetas)
                     {
-                        // Cumplimos con el test: "ContieneNombreReceta"
-                        writer.WriteLine($"- Receta: {receta.Nombre} | Chef: {receta.Chef} | Duración: {receta.TiempoMinutos} min");
+                        writer.WriteLine($"Libro: {libro.Key}");
+
+                        foreach (var receta in libro.Value)
+                        {
+                            // Usar ToString() de Receta (formato exacto)
+                            writer.WriteLine($"  - {receta.ToString()}");
+                        }
+                        writer.WriteLine();
                     }
                 }
-
-                return true; // Si se creó el archivo con éxito, retorna true (Pasa el test 'CreaArchivo')
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
-
     }
 }
