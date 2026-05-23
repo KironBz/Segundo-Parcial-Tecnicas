@@ -32,7 +32,7 @@
 
         public void EliminarLibro(string nombreLibro)
         {
-            /* NO LO PIDE
+            /* NO LO PIDE, pero evitaria que elimine algo que no existe
             if (!LibrosRecetas.ContainsKey(nombreLibro))
                 throw new KeyNotFoundException($"El libro '{nombreLibro}' no existe.");
             */
@@ -40,9 +40,9 @@
             LibrosRecetas.Remove(nombreLibro);
         }
 
-        public List<Receta> ObtenerLibro(string nombreLibro) // ------------------------------ Podria Fallar
+        public List<Receta> ObtenerLibro(string nombreLibro)
         {
-            /* NO LO PIDE
+            /* NO LO PIDE, pero lanzaria una excepcion si la clave no existiera
             if (!LibrosRecetas.ContainsKey(nombreLibro))
                 throw new KeyNotFoundException($"El libro '{nombreLibro}' no existe.");
              */
@@ -50,28 +50,31 @@
             return LibrosRecetas[nombreLibro];
         }
 
-        public int ContarRecetas(string nombreLibro)
+        /*
+        /    El metodo antes implementado buscaba en un solo libro, este busca todas las recetas
+        */
+        public int ContarRecetas() // va libro a libro contando las recetas
         {
-            /*
-            if (!LibrosRecetas.ContainsKey(nombreLibro))
-                throw new KeyNotFoundException($"El libro '{nombreLibro}' no existe.");
-            */
-
-            return LibrosRecetas[nombreLibro].Count;// ------------------------------ Podria Ser -1
+            int total = 0;
+            foreach (var lista in LibrosRecetas.Values)
+            {
+                total += lista.Count;
+            }
+            return total;
         }
         public void MostrarLibros()
         {
-            if (LibrosRecetas.Count == 0)
+            if (LibrosRecetas.Count == 0) // Revisa el numero de libros, si es 0 imprime y termina ahí
             {
                 Console.WriteLine("No hay libros registrados.");
                 return;
             }
 
-            foreach (var libro in LibrosRecetas)
+            foreach (var libro in LibrosRecetas)        // Recorre los libros en el diccionario
             {
                 Console.WriteLine($"Libro: {libro.Key}");
 
-                foreach (var receta in libro.Value)
+                foreach (var receta in libro.Value)     // Recorre las recetas de los libros
                 {
                     Console.WriteLine("   - " + receta.ToString());
                 }

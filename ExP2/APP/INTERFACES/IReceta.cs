@@ -1,12 +1,15 @@
 ﻿namespace APP.INTERFACES
 {
-    public interface IReceta
+    public interface IReceta        // Contrato para Clase RecetA
     {
-        // Interface Receta -> Contrato para Clase RecetA
-        // Contrato con propiedades
-
         // Atributos y Propiedades
-        string Nombre { get; } // Sin sset para que sean solo de lectura
+        
+        /*
+        /   Mejoramos las propiedaes de lectura y escritura
+        /   Añadimos el metodo ToString faltante
+        */
+
+        string Nombre { get; } // Sin set para que sean solo de lectura
         string Chef { get; }
         int TiempoMinutos { get; }
 

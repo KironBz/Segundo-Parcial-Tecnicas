@@ -1,18 +1,21 @@
 ﻿using APP.INTERFACES;
-using System; // Para lanzar excepciones sin .system
-
 namespace APP.MODELOS
 {
     public class Receta : IReceta
     {
-        // Atributos y Propiedades
-        private readonly string _nombre;
-        private readonly string _chef;
-        private readonly int _tiempoMinutos;
+        /*
+        /   Corregimos las propiedaes de lectura y escritura (como en su interfaz)
+        /   Añadimos el metodo ToString faltante
+        */
 
-        public string Nombre { get { return _nombre; } }
-        public string Chef { get { return _chef; } }
-        public int TiempoMinutos { get { return _tiempoMinutos; } }
+        // Atributos y Propiedades
+        private readonly string nnombre;    // pr --> solo es modificable detnro de la clase
+        private readonly string cchef;      // readonly solo asigna el valor en el constructor
+        private readonly int ttiempoMinutos;
+
+        public string Nombre { get { return nnombre; } }    // public cualquiera las puede ver 
+        public string Chef { get { return cchef; } }        // set solo eprmite lectura, como la interfaz
+        public int TiempoMinutos { get { return ttiempoMinutos; } }
 
         // Constructor
         public Receta(string nombre, string chef, int tiempoMinutos)
@@ -20,9 +23,9 @@ namespace APP.MODELOS
             if (tiempoMinutos <= 0)
                 throw new ArgumentException("El tiempo de preparación debe ser mayor a 0.");
 
-            Nombre = nombre;
-            Chef = chef;
-            TiempoMinutos = tiempoMinutos;
+            nnombre = nombre;
+            cchef = chef;
+            ttiempoMinutos = tiempoMinutos;
         }
 
         // Metodos
