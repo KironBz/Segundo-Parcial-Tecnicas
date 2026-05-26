@@ -104,7 +104,7 @@ namespace APP
                             tiempoTotal = 0;
                             foreach (var r in libro)
                                 tiempoTotal += r.TiempoMinutos;
-                            Console.WriteLine($"Libro ordenado con MergeSort. Tiempo total: {tiempoTotal} min");
+                            Console.WriteLine($"Libro ordenado con MergeSort. Tiempo total: {tiempoTotal} milisegundos");
                         }
                         break;
 
