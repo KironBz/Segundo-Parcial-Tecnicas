@@ -4,9 +4,9 @@ using System.Text;
 
 namespace APP.SERVICIOS
 {
-    public class ExportadorTxT : IExportador
+    public class ExportadorTxt : IExportador
     {
-        /*          CORRECCIONES
+        /*         CORRECCIONES
         / - Se corrige el nombre de clase ExportadorTxt
         / - La firma del método se modifica
         / - Se cambia el retorno a void (no bool)

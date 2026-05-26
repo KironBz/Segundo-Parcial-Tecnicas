@@ -1,6 +1,6 @@
 ﻿namespace APP.INTERFACES
 {
-    public interface IReceta        // Contrato para Clase RecetA
+    public interface IReceta        // Contrato para la Clase RecetA
     {
         // Atributos y Propiedades
         

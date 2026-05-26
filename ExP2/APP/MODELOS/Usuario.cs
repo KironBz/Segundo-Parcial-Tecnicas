@@ -32,7 +32,7 @@
 
         public void EliminarLibro(string nombreLibro)
         {
-            /* NO LO PIDE, pero evitaria que elimine algo que no existe
+            /* NO LO PIDE, pero evitaria que elimine algo que no existe, por curioso que suene
             if (!LibrosRecetas.ContainsKey(nombreLibro))
                 throw new KeyNotFoundException($"El libro '{nombreLibro}' no existe.");
             */

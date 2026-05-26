@@ -197,7 +197,7 @@ namespace APP.GESTORES
             return resultado;
         }
 
-        // 3ro
+        // 3ro Busqueda Binaria
         public int BusquedaBinaria(string nombre)
         {
             List<Receta> copia = new List<Receta>(RecetasDisponibles);

@@ -4,7 +4,7 @@ using APP.GESTORES;
 
 namespace APP.SERVICIOS
 {
-    /*          CORRECCIONES
+    /*           CORRECCIONES
     / Se añadio using.APP.GESTORES
     / Se usa el gestor para aplicar QuickSort o MergeSort según el parámetro.
     / En OrdenarLibroYCalcularTiempo se ordena la lista del libro y se suma TiempoMinutos.
@@ -69,7 +69,7 @@ namespace APP.SERVICIOS
         // Contar usuarios (sin LINQ)
         public int ContarUsuarios()
         {
-            return Usuarios.Count;   // ✅ propiedad, no método LINQ
+            return Usuarios.Count;   // propiedad, no método LINQ
         }
 
         // Ordenar catálogo global según algoritmo elegido

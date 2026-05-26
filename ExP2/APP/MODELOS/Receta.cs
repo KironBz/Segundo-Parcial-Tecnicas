@@ -9,7 +9,7 @@ namespace APP.MODELOS
         */
 
         // Atributos y Propiedades
-        private readonly string nnombre;    // pr --> solo es modificable detnro de la clase
+        private readonly string nnombre;    // pr -> solo es modificable detnro de la clase
         private readonly string cchef;      // readonly solo asigna el valor en el constructor
         private readonly int ttiempoMinutos;
 

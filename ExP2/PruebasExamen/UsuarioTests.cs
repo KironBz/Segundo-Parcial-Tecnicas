@@ -1,5 +1,4 @@
 using Xunit;
-
 using APP.MODELOS;
 
 namespace PruebasExamen;
@@ -10,79 +9,55 @@ public class UsuarioTests
     [Fact]
     public void CrearLibroRecetas_CreacionDeLista()
     {
-        // Arrange
         var u = new Usuario("Luis");
-
-        // Act
         u.CrearLibroRecetas("Favoritas");
 
-        // Assert
         Assert.True(u.LibrosRecetas.ContainsKey("Favoritas"));
         Assert.Empty(u.LibrosRecetas["Favoritas"]);
-
     }
+
     [Fact]
     public void CrearLibroRecetas_Duplicado_Exception()
     {
-        // Arrange
         var u = new Usuario("Luis");
-
-        // Act
         u.CrearLibroRecetas("Favoritas");
 
-        // Assert
         Assert.Throws<InvalidOperationException>(() => u.CrearLibroRecetas("Favoritas"));
     }
 
     // 2. AgregarRecetaALibro(nombreLibro, receta)
     [Fact]
-
     public void AgregarRecetaALibro_DebeAñadirReceta()
     {
-        // Arrange
         var u = new Usuario("Luis");
-
-        // Act
         u.CrearLibroRecetas("Favoritas");
-
-        // Arrange
         var receta = new Receta("Paella", "Chef Ramirez", 45);
 
-        // Act
         u.AgregarRecetaALibro("Favoritas", receta);
 
-        // Assert
         Assert.Single(u.LibrosRecetas["Favoritas"]);
     }
 
     [Fact]
     public void AgregarRecetaALibro_ListaInexistente_Exception()
     {
-        // Arrange
         var u = new Usuario("Luis");
         var receta = new Receta("Paella", "Chef Ramirez", 45);
 
-        // Assert
         Assert.Throws<KeyNotFoundException>(() => u.AgregarRecetaALibro("Inexistente", receta));
     }
 
-    // 3. ContarRecetas()
+    // 3. ContarRecetas()  (sin parámetros)
     [Fact]
     public void ContarRecetas_DebeSumarCorrectamente()
     {
-        // Arrange
         var u = new Usuario("Luis");
-
-        // Act
         u.CrearLibroRecetas("Libro1");
         u.CrearLibroRecetas("Libro2");
 
         u.AgregarRecetaALibro("Libro1", new Receta("R1", "C1", 10));
         u.AgregarRecetaALibro("Libro2", new Receta("R2", "C2", 20));
 
-        // Assert
-        Assert.Equal(2, u.ContarRecetas("Luis"));
-
-
+        Assert.Equal(2, u.ContarRecetas());
     }
 }

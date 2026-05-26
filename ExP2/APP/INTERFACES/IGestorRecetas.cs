@@ -1,5 +1,4 @@
 ﻿using APP.MODELOS;
-
 namespace APP.INTERFACES
 
 {
