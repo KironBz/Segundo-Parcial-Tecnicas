@@ -4,6 +4,17 @@ using System.Collections.Generic;
 using APP.GESTORES;
 using APP.MODELOS;
 
+/*
+/ Se agregaron using para manejar colecciones, excepciones y modelos.
+/ El namespace ahora usa llaves explícitas en su estructura.
+/ El test de duplicados ahora valida una excepción InvalidOperationException.
+/ Se unificó el uso de la propiedad g.RecetasDisponibles.Count.
+/ Se eliminaron los comentarios estructurales Arrange, Act y Assert.
+/ Se renombró una prueba para mejorar la claridad semántica.
+/ Se añadieron pruebas para ordenamientos QuickSort y MergeSort.
+/ Se agregaron pruebas para validar el método BusquedaBinaria.
+*/
+
 namespace PruebasExamen
 {
     public class GestorRecetasTests
