@@ -5,6 +5,10 @@ using APP.GESTORES;
 using APP.SERVICIOS;
 using APP.INTERFACES;
 
+/*
+/ Se modifico el program para cumplir con los requerimentos de las diapositivas de la 12 a la 15 debido a que antes estaba vacio
+*/
+
 namespace APP
 {
     class Program
